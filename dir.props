@@ -98,6 +98,34 @@
   <Import Project="$(MSBuildThisFileDirectory)pkg/ExternalPackages/versions.props" Condition="Exists('$(MSBuildThisFileDirectory)pkg/ExternalPackages/versions.props')" />
 
   <ItemGroup>
+    <DependencyBuildInfo Include="CoreFx">
+      <RawUrl>https://raw.githubusercontent.com/dotnet/versions/master/build-info/dotnet/corefx/master</RawUrl>
+    </DependencyBuildInfo>
+    <DependencyBuildInfo Include="CoreClr">
+      <RawUrl>https://raw.githubusercontent.com/dotnet/versions/master/build-info/dotnet/coreclr/master</RawUrl>
+    </DependencyBuildInfo>
+    <DependencyBuildInfo Include="External">
+      <RawUrl>https://raw.githubusercontent.com/dotnet/versions/master/build-info/dotnet/projectk-tfs/master</RawUrl>
+    </DependencyBuildInfo>
+
+    <XmlUpgradeStep Include="CoreFx">
+      <Path>$(MSBuildThisFileFullPath)</Path>
+      <ElementName>CoreFxExpectedPrerelease</ElementName>
+      <BuildInfoName>CoreFx</BuildInfoName>
+    </XmlUpgradeStep>
+    <XmlUpgradeStep Include="CoreClr">
+      <Path>$(MSBuildThisFileFullPath)</Path>
+      <ElementName>CoreClrExpectedPrerelease</ElementName>
+      <BuildInfoName>CoreClr</BuildInfoName>
+    </XmlUpgradeStep>
+    <XmlUpgradeStep Include="External">
+      <Path>$(MSBuildThisFileFullPath)</Path>
+      <ElementName>ExternalExpectedPrerelease</ElementName>
+      <BuildInfoName>External</BuildInfoName>
+    </XmlUpgradeStep>
+  </ItemGroup>
+
+  <ItemGroup>
     <ValidationPattern Include="CoreFxVersions">
       <IdentityRegex>$(CoreFxVersionsIdentityRegex)</IdentityRegex>
       <ExpectedPrerelease>$(CoreFxExpectedPrerelease)</ExpectedPrerelease>
