@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Condition="Exists('..\dir.props')" Project="..\dir.props" />
 
@@ -88,14 +88,42 @@
     <ValidatePackageVersions>true</ValidatePackageVersions>
     <ProhibitFloatingDependencies>true</ProhibitFloatingDependencies>
 
-    <CoreFxExpectedPrerelease>beta-24303-04</CoreFxExpectedPrerelease>
+    <CoreFxExpectedPrerelease>beta-24307-03</CoreFxExpectedPrerelease>
     <CoreClrExpectedPrerelease>beta-24229-03</CoreClrExpectedPrerelease>
-    <ExternalExpectedPrerelease>beta-24305-00</ExternalExpectedPrerelease>
+    <ExternalExpectedPrerelease>beta-24307-00</ExternalExpectedPrerelease>
 
     <CoreFxVersionsIdentityRegex>^(?i)((System\..*)|(NETStandard\.Library)|(Microsoft\.CSharp)|(Microsoft\.NETCore\.Targets)|(Microsoft\.NETCore\.Platforms)|(Microsoft\.Win32\..*)|(Microsoft\.VisualBasic))(?&lt;!TestData)$</CoreFxVersionsIdentityRegex>
   </PropertyGroup>
 
   <Import Project="$(MSBuildThisFileDirectory)pkg/ExternalPackages/versions.props" Condition="Exists('$(MSBuildThisFileDirectory)pkg/ExternalPackages/versions.props')" />
+
+  <ItemGroup>
+    <DependencyBuildInfo Include="CoreFx">
+      <RawUrl>https://raw.githubusercontent.com/dotnet/versions/master/build-info/dotnet/corefx/master</RawUrl>
+    </DependencyBuildInfo>
+    <DependencyBuildInfo Include="CoreClr">
+      <RawUrl>https://raw.githubusercontent.com/dotnet/versions/master/build-info/dotnet/coreclr/master</RawUrl>
+    </DependencyBuildInfo>
+    <DependencyBuildInfo Include="External">
+      <RawUrl>https://raw.githubusercontent.com/dotnet/versions/master/build-info/dotnet/projectk-tfs/master</RawUrl>
+    </DependencyBuildInfo>
+
+    <XmlUpgradeStep Include="CoreFx">
+      <Path>$(MSBuildThisFileFullPath)</Path>
+      <ElementName>CoreFxExpectedPrerelease</ElementName>
+      <BuildInfoName>CoreFx</BuildInfoName>
+    </XmlUpgradeStep>
+    <XmlUpgradeStep Include="CoreClr">
+      <Path>$(MSBuildThisFileFullPath)</Path>
+      <ElementName>CoreClrExpectedPrerelease</ElementName>
+      <BuildInfoName>CoreClr</BuildInfoName>
+    </XmlUpgradeStep>
+    <XmlUpgradeStep Include="External">
+      <Path>$(MSBuildThisFileFullPath)</Path>
+      <ElementName>ExternalExpectedPrerelease</ElementName>
+      <BuildInfoName>External</BuildInfoName>
+    </XmlUpgradeStep>
+  </ItemGroup>
 
   <ItemGroup>
     <ValidationPattern Include="CoreFxVersions">
