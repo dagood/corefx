@@ -3,7 +3,7 @@
     "NETStandard.Library": "1.6.1-beta-24326-03",
     "Microsoft.CSharp": "4.0.2-beta-24326-03",
     "Microsoft.Win32.Primitives": "4.0.2-beta-24326-03",
-    "runtime.native.System.Data.SqlClient.sni": "4.0.2-beta-24217-04",
+    "runtime.native.System.Data.SqlClient.sni": "4.0.2-beta-24326-03",
     "System.Collections": "4.0.12-beta-24326-03",
     "System.Collections.Concurrent": "4.0.13-beta-24326-03",
     "System.ComponentModel": "4.0.2-beta-24326-03",
