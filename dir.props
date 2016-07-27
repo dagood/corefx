@@ -99,6 +99,7 @@
 
   <!-- Dependency auto-upgrade configuration -->
   <ItemGroup>
+  
     <DependencyBuildInfo Include="CoreFx">
       <RawUrl>https://raw.githubusercontent.com/dotnet/versions/master/build-info/dotnet/corefx/master</RawUrl>
     </DependencyBuildInfo>
