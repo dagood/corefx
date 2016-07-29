@@ -27,6 +27,7 @@
 
   <!-- Informs build tools to apply .NET Framework metadata if not a test project -->
   <PropertyGroup>
+  
     <IsDotNetFrameworkProductAssembly>true</IsDotNetFrameworkProductAssembly>
   </PropertyGroup>
 
