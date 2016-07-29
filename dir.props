@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Condition="Exists('..\dir.props')" Project="..\dir.props" />
 
@@ -27,6 +27,7 @@
 
   <!-- Informs build tools to apply .NET Framework metadata if not a test project -->
   <PropertyGroup>
+  
     <IsDotNetFrameworkProductAssembly>true</IsDotNetFrameworkProductAssembly>
   </PropertyGroup>
 
@@ -88,14 +89,43 @@
     <ValidatePackageVersions>true</ValidatePackageVersions>
     <ProhibitFloatingDependencies>true</ProhibitFloatingDependencies>
 
-    <CoreFxExpectedPrerelease>beta-24326-03</CoreFxExpectedPrerelease>
-    <CoreClrExpectedPrerelease>beta-24326-02</CoreClrExpectedPrerelease>
-    <ExternalExpectedPrerelease>beta-24326-00</ExternalExpectedPrerelease>
+    <CoreFxExpectedPrerelease>beta-24329-01</CoreFxExpectedPrerelease>
+    <CoreClrExpectedPrerelease>beta-24329-03</CoreClrExpectedPrerelease>
+    <ExternalExpectedPrerelease>beta-24329-00</ExternalExpectedPrerelease>
 
     <CoreFxVersionsIdentityRegex>^(?i)((System\..*)|(NETStandard\.Library)|(Microsoft\.CSharp)|(Microsoft\.NETCore\.Targets)|(Microsoft\.NETCore\.Platforms)|(Microsoft\.Win32\..*)|(Microsoft\.VisualBasic))(?&lt;!TestData)$</CoreFxVersionsIdentityRegex>
   </PropertyGroup>
 
   <Import Project="$(MSBuildThisFileDirectory)pkg/ExternalPackages/versions.props" Condition="Exists('$(MSBuildThisFileDirectory)pkg/ExternalPackages/versions.props')" />
+
+  <!-- Dependency auto-upgrade configuration -->
+  <ItemGroup>
+    <DependencyBuildInfo Include="CoreFx">
+      <RawUrl>https://raw.githubusercontent.com/dotnet/versions/master/build-info/dotnet/corefx/master</RawUrl>
+    </DependencyBuildInfo>
+    <DependencyBuildInfo Include="CoreClr">
+      <RawUrl>https://raw.githubusercontent.com/dotnet/versions/master/build-info/dotnet/coreclr/master</RawUrl>
+    </DependencyBuildInfo>
+    <DependencyBuildInfo Include="External">
+      <RawUrl>https://raw.githubusercontent.com/dotnet/versions/master/build-info/dotnet/projectk-tfs/master</RawUrl>
+    </DependencyBuildInfo>
+
+    <XmlUpdateStep Include="CoreFx">
+      <Path>$(MSBuildThisFileFullPath)</Path>
+      <ElementName>CoreFxExpectedPrerelease</ElementName>
+      <BuildInfoName>CoreFx</BuildInfoName>
+    </XmlUpdateStep>
+    <XmlUpdateStep Include="CoreClr">
+      <Path>$(MSBuildThisFileFullPath)</Path>
+      <ElementName>CoreClrExpectedPrerelease</ElementName>
+      <BuildInfoName>CoreClr</BuildInfoName>
+    </XmlUpdateStep>
+    <XmlUpdateStep Include="External">
+      <Path>$(MSBuildThisFileFullPath)</Path>
+      <ElementName>ExternalExpectedPrerelease</ElementName>
+      <BuildInfoName>External</BuildInfoName>
+    </XmlUpdateStep>
+  </ItemGroup>
 
   <ItemGroup>
     <ValidationPattern Include="CoreFxVersions">
