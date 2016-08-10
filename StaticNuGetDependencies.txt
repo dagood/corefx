@@ -1,0 +1,12 @@
+Microsoft.TargetingPack.NETFramework.v4.5 1.0.1
+Microsoft.TargetingPack.NETFramework.v4.5.1 1.0.1
+Microsoft.TargetingPack.NETFramework.v4.5.2 1.0.1
+Microsoft.TargetingPack.NETFramework.v4.6 1.0.1
+Microsoft.TargetingPack.NETFramework.v4.6.1 1.0.1
+Microsoft.TargetingPack.NETFramework.v4.6.2 1.0.1
+Microsoft.TargetingPack.Private.WinRT 1.0.1
+xunit 2.1.0
+xunit.runner.utility 2.1.0
+xunit.runner.console 2.1.0
+Microsoft.xunit.netcore.extensions 1.0.0-prerelease-00704-03
+Microsoft.DotNet.BuildTools.TestSuite 1.0.0-prerelease-00704-03
