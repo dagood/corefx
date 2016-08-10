@@ -87,31 +87,43 @@
 
   <!-- Package dependency validation -->
   <PropertyGroup>
-    <ValidatePackageVersions>true</ValidatePackageVersions>
+    <ValidatePackageVersions Condition="'$(ValidatePackageVersions)'==''">true</ValidatePackageVersions>
     <ProhibitFloatingDependencies>true</ProhibitFloatingDependencies>
 
     <CoreFxExpectedPrerelease>beta-24403-05</CoreFxExpectedPrerelease>
     <CoreClrExpectedPrerelease>beta-24405-03</CoreClrExpectedPrerelease>
     <ExternalExpectedPrerelease>beta-24404-00</ExternalExpectedPrerelease>
 
-    <CoreFxVersionsIdentityRegex>^(?i)((System\..*)|(NETStandard\.Library)|(Microsoft\.CSharp)|(Microsoft\.NETCore\.Targets)|(Microsoft\.NETCore\.Platforms)|(Microsoft\.Win32\..*)|(Microsoft\.VisualBasic))(?&lt;!TestData)$</CoreFxVersionsIdentityRegex>
-
-    <BaseDotNetBuildInfoUrl>https://raw.githubusercontent.com/dotnet/versions/master/build-info/dotnet/</BaseDotNetBuildInfoUrl>
+    <BaseDotNetBuildInfo>build-info/dotnet/</BaseDotNetBuildInfo>
     <DependencyBranch>master</DependencyBranch>
   </PropertyGroup>
 
   <Import Project="$(MSBuildThisFileDirectory)pkg/ExternalPackages/versions.props" Condition="Exists('$(MSBuildThisFileDirectory)pkg/ExternalPackages/versions.props')" />
 
-  <!-- Dependency auto-upgrade configuration -->
+  <!-- Dependency auto-upgrade configuration, also used for validation during full builds -->
   <ItemGroup>
-    <DependencyBuildInfo Include="CoreFx">
-      <RawUrl>$(BaseDotNetBuildInfoUrl)corefx/$(DependencyBranch)</RawUrl>
+    <RemoteDependencyBuildInfo Include="CoreFx">
+      <BuildInfoPath>$(BaseDotNetBuildInfo)corefx/$(DependencyBranch)</BuildInfoPath>
+      <CurrentRef>d50bf97e82d5303a668ea4bffc3f94ea403caf7d</CurrentRef>
+    </RemoteDependencyBuildInfo>
+    <RemoteDependencyBuildInfo Include="CoreClr">
+      <BuildInfoPath>$(BaseDotNetBuildInfo)coreclr/$(DependencyBranch)</BuildInfoPath>
+      <CurrentRef>4a8cff5b86b0de701b0015aa72a8578f6312307c</CurrentRef>
+    </RemoteDependencyBuildInfo>
+    <RemoteDependencyBuildInfo Include="External">
+      <BuildInfoPath>$(BaseDotNetBuildInfo)projectk-tfs/$(DependencyBranch)</BuildInfoPath>
+      <CurrentRef>5a5d088edf3af0c333fda6c801826888e6b72d7c</CurrentRef>
+    </RemoteDependencyBuildInfo>
+    <DependencyBuildInfo Include="@(RemoteDependencyBuildInfo)">
+      <RawVersionsBaseUrl>https://raw.githubusercontent.com/dotnet/versions</RawVersionsBaseUrl>
     </DependencyBuildInfo>
-    <DependencyBuildInfo Include="CoreClr">
-      <RawUrl>$(BaseDotNetBuildInfoUrl)coreclr/$(DependencyBranch)</RawUrl>
+    
+    <DependencyBuildInfo Include="Static">
+      <PackageListPath>$(ProjectDir)StaticNuGetDependencies.txt</PackageListPath>
     </DependencyBuildInfo>
-    <DependencyBuildInfo Include="External">
-      <RawUrl>$(BaseDotNetBuildInfoUrl)projectk-tfs/$(DependencyBranch)</RawUrl>
+    <DependencyBuildInfo Include="uwpRunnerVersion">
+      <PackageId>microsoft.xunit.runner.uwp</PackageId>
+      <Version>$(AppXRunnerVersion)</Version>
     </DependencyBuildInfo>
 
     <XmlUpdateStep Include="CoreFx">
@@ -129,41 +141,6 @@
       <ElementName>ExternalExpectedPrerelease</ElementName>
       <BuildInfoName>External</BuildInfoName>
     </XmlUpdateStep>
-  </ItemGroup>
-
-  <ItemGroup>
-    <ValidationPattern Include="CoreFxVersions">
-      <IdentityRegex>$(CoreFxVersionsIdentityRegex)</IdentityRegex>
-      <ExpectedPrerelease>$(CoreFxExpectedPrerelease)</ExpectedPrerelease>
-    </ValidationPattern>
-    <ValidationPattern Include="CoreClrVersions">
-      <IdentityRegex>^(?i)(Microsoft\.NETCore\.Runtime.*)|(Microsoft\.TargetingPack\.Private\.CoreCLR)$</IdentityRegex>
-      <ExpectedPrerelease>$(CoreClrExpectedPrerelease)</ExpectedPrerelease>
-    </ValidationPattern>
-    <ValidationPattern Include="CoreLibTargetingPackVersions">
-      <IdentityRegex>^(?i)Microsoft\.TargetingPack\.Private\.NETNative$</IdentityRegex>
-      <ExpectedPrerelease>$(ExternalExpectedPrerelease)</ExpectedPrerelease>
-    </ValidationPattern>
-    <ValidationPattern Include="TargetingPackVersions">
-      <IdentityRegex>^(?i)Microsoft\.TargetingPack\.(NetFramework.*|Private\.WinRT)$</IdentityRegex>
-      <ExpectedVersion>1.0.1</ExpectedVersion>
-    </ValidationPattern>
-    <ValidationPattern Include="xUnitStableVersions">
-      <IdentityRegex>^(?i)xunit$</IdentityRegex>
-      <ExpectedVersion>2.1.0</ExpectedVersion>
-    </ValidationPattern>
-    <ValidationPattern Include="xUnitExtensionsVersions">
-      <IdentityRegex>^(?i)Microsoft\.xunit\.netcore\.extensions$</IdentityRegex>
-      <ExpectedVersion>1.0.0-prerelease-00704-03</ExpectedVersion>
-    </ValidationPattern>
-    <ValidationPattern Include="buildToolsTestSuiteVersions">
-      <IdentityRegex>^(?i)Microsoft\.DotNet\.BuildTools\.TestSuite$</IdentityRegex>
-      <ExpectedVersion>1.0.0-prerelease-00704-03</ExpectedVersion>
-    </ValidationPattern>
-    <ValidationPattern Include="uwpRunnerVersion">
-      <IdentityRegex>^(?i)microsoft\.xunit\.runner\.uwp$</IdentityRegex>
-      <ExpectedVersion>$(AppXRunnerVersion)</ExpectedVersion>
-    </ValidationPattern>
   </ItemGroup>
 
   <!-- Runner versions -->
