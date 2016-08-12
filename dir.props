@@ -90,13 +90,13 @@
     <ValidatePackageVersions Condition="'$(ValidatePackageVersions)'==''">true</ValidatePackageVersions>
     <ProhibitFloatingDependencies>true</ProhibitFloatingDependencies>
 
-    <CoreFxExpectedPrerelease>beta-24411-04</CoreFxExpectedPrerelease>
-    <CoreClrExpectedPrerelease>beta-24411-03</CoreClrExpectedPrerelease>
-    <ExternalExpectedPrerelease>beta-24411-00</ExternalExpectedPrerelease>
+    <CoreFxExpectedPrerelease>beta-24412-03</CoreFxExpectedPrerelease>
+    <CoreClrExpectedPrerelease>beta-24412-03</CoreClrExpectedPrerelease>
+    <ExternalExpectedPrerelease>beta-24412-00</ExternalExpectedPrerelease>
 
-    <CoreFxCurrentRef>4fabbc1e2686fa3836685906fcf7eddbee8bcb45</CoreFxCurrentRef>
-    <CoreClrCurrentRef>4a8cff5b86b0de701b0015aa72a8578f6312307c</CoreClrCurrentRef>
-    <ExternalCurrentRef>290629e5c90918280ce2f8057e19e2c0f11ce9d6</ExternalCurrentRef>
+    <CoreFxCurrentRef>4533c53e4d7f5d70917d72957c5644acb912b3b9</CoreFxCurrentRef>
+    <CoreClrCurrentRef>4533c53e4d7f5d70917d72957c5644acb912b3b9</CoreClrCurrentRef>
+    <ExternalCurrentRef>4533c53e4d7f5d70917d72957c5644acb912b3b9</ExternalCurrentRef>
     <CurrentRefXmlPath>$(MSBuildThisFileFullPath)</CurrentRefXmlPath>
 
     <BaseDotNetBuildInfo>build-info/dotnet/</BaseDotNetBuildInfo>
