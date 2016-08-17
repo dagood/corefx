@@ -86,14 +86,10 @@
   </PropertyGroup>
 
   <!-- Provides package dependency version properties and verification/auto-upgrade configuration -->
-  <Import Project="$(MSBuildThisFileDirectory)dependency.versions.props" />
+  <Import Project="$(MSBuildThisFileDirectory)dependencies.props" />
 
   <Import Project="$(MSBuildThisFileDirectory)pkg/ExternalPackages/versions.props" Condition="Exists('$(MSBuildThisFileDirectory)pkg/ExternalPackages/versions.props')" />
 
-  <!-- Runner versions -->
-  <PropertyGroup>
-    <AppXRunnerVersion>1.0.3-prerelease-00614-01</AppXRunnerVersion>
-  </PropertyGroup>
   <!-- Import packaging props -->
   <Import Project="$(MSBuildThisFileDirectory)Packaging.props"/>
 
