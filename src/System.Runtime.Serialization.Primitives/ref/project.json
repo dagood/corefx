@@ -1,6 +1,5 @@
 {
-  "dependencies": {
-  },
+  "dependencies": {},
   "frameworks": {
     "netstandard1.7": {
       "imports": [
