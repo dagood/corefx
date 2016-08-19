@@ -5,9 +5,9 @@
     [Project]CurrentBranch is the branch of Project that this repo depends on.
   -->
   <PropertyGroup>
-    <CoreFxCurrentRef>32e4abc8afc7a18484b4bc1de351336b07cdb460</CoreFxCurrentRef>
-    <CoreFxCurrentBranch>master</CoreFxCurrentBranch>
-    <CoreClrCurrentRef>32e4abc8afc7a18484b4bc1de351336b07cdb460</CoreClrCurrentRef>
+    <CoreFxCurrentRef>c46101d17dfca07c64d81de3d7fe3fba3c5b1005</CoreFxCurrentRef>
+    <CoreFxCurrentBranch>dev/api</CoreFxCurrentBranch>
+    <CoreClrCurrentRef>c46101d17dfca07c64d81de3d7fe3fba3c5b1005</CoreClrCurrentRef>
     <CoreClrCurrentBranch>master</CoreClrCurrentBranch>
     <ExternalCurrentRef>e39a63f68adeb45d0ef1a7a157cbf13c89ce3d2d</ExternalCurrentRef>
     <ExternalCurrentBranch>master</ExternalCurrentBranch>
@@ -15,8 +15,8 @@
 
   <!-- Auto-upgraded properties for each build info dependency. -->
   <PropertyGroup>
-    <CoreFxExpectedPrerelease>beta-24418-02</CoreFxExpectedPrerelease>
-    <CoreClrExpectedPrerelease>beta-24418-03</CoreClrExpectedPrerelease>
+    <CoreFxExpectedPrerelease>beta-devapi-24419-01</CoreFxExpectedPrerelease>
+    <CoreClrExpectedPrerelease>beta-24419-04</CoreClrExpectedPrerelease>
     <ExternalExpectedPrerelease>beta-24418-00</ExternalExpectedPrerelease>
   </PropertyGroup>
 
