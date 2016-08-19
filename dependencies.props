@@ -1,9 +1,16 @@
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <!-- Source of truth for dependency tooling: the commit hash of the dotnet/versions master branch as of the last auto-upgrade. -->
+  <!--
+    Source of truth for dependency tooling.
+    [Project]CurrentRef is the commit hash of the dotnet/versions master branch to use.
+    [Project]CurrentBranch is the branch of Project that this repo depends on.
+  -->
   <PropertyGroup>
     <CoreFxCurrentRef>32e4abc8afc7a18484b4bc1de351336b07cdb460</CoreFxCurrentRef>
+    <CoreFxCurrentBranch>master</CoreFxCurrentBranch>
     <CoreClrCurrentRef>32e4abc8afc7a18484b4bc1de351336b07cdb460</CoreClrCurrentRef>
+    <CoreClrCurrentBranch>master</CoreClrCurrentBranch>
     <ExternalCurrentRef>e39a63f68adeb45d0ef1a7a157cbf13c89ce3d2d</ExternalCurrentRef>
+    <ExternalCurrentBranch>master</ExternalCurrentBranch>
   </PropertyGroup>
 
   <!-- Auto-upgraded properties for each build info dependency. -->
@@ -26,17 +33,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <!--
+      Auto-upgrade sets the [Project]CurrentBranch property for each build info to the value of
+      AutoUpgradeBranch. BranchBeingUpgraded is passed by the auto-upgrade build.
+    -->
     <RemoteDependencyBuildInfo Include="CoreFx">
-      <BuildInfoPath>$(BaseDotNetBuildInfo)corefx/$(DependencyBranch)</BuildInfoPath>
+      <BuildInfoPath>$(BaseDotNetBuildInfo)corefx</BuildInfoPath>
       <CurrentRef>$(CoreFxCurrentRef)</CurrentRef>
+      <CurrentBranch>$(CoreFxCurrentBranch)</CurrentBranch>
+      <AutoUpgradeBranch>$(BranchBeingUpgraded)</AutoUpgradeBranch>
     </RemoteDependencyBuildInfo>
     <RemoteDependencyBuildInfo Include="CoreClr">
-      <BuildInfoPath>$(BaseDotNetBuildInfo)coreclr/$(DependencyBranch)</BuildInfoPath>
+      <BuildInfoPath>$(BaseDotNetBuildInfo)coreclr</BuildInfoPath>
       <CurrentRef>$(CoreClrCurrentRef)</CurrentRef>
+      <CurrentBranch>$(CoreClrCurrentBranch)</CurrentBranch>
+      <AutoUpgradeBranch>$(DependencyBranch)</AutoUpgradeBranch>
     </RemoteDependencyBuildInfo>
     <RemoteDependencyBuildInfo Include="External">
-      <BuildInfoPath>$(BaseDotNetBuildInfo)projectk-tfs/$(DependencyBranch)</BuildInfoPath>
+      <BuildInfoPath>$(BaseDotNetBuildInfo)projectk-tfs</BuildInfoPath>
       <CurrentRef>$(ExternalCurrentRef)</CurrentRef>
+      <CurrentBranch>$(ExternalCurrentBranch)</CurrentBranch>
+      <AutoUpgradeBranch>$(DependencyBranch)</AutoUpgradeBranch>
     </RemoteDependencyBuildInfo>
 
     <DependencyBuildInfo Include="@(RemoteDependencyBuildInfo)">
