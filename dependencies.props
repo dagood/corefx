@@ -32,21 +32,22 @@
     <RemoteDependencyBuildInfoPath Include="CoreFx">
       <BuildInfoPath>$(BaseDotNetBuildInfo)corefx/$(DependencyBranch)</BuildInfoPath>
       <CurrentRef>$(CoreFxCurrentRef)</CurrentRef>
+      <VersionsRepoAutoUpdateRef>master</VersionsRepoAutoUpdateRef>
     </RemoteDependencyBuildInfoPath>
     <RemoteDependencyBuildInfoPath Include="CoreClr">
       <BuildInfoPath>$(BaseDotNetBuildInfo)coreclr/$(DependencyBranch)</BuildInfoPath>
       <CurrentRef>$(CoreClrCurrentRef)</CurrentRef>
+      <VersionsRepoAutoUpdateRef>master</VersionsRepoAutoUpdateRef>
     </RemoteDependencyBuildInfoPath>
     <RemoteDependencyBuildInfoPath Include="External">
       <BuildInfoPath>$(BaseDotNetBuildInfo)projectk-tfs/$(DependencyBranch)</BuildInfoPath>
       <CurrentRef>$(ExternalCurrentRef)</CurrentRef>
+      <VersionsRepoAutoUpdateRef>master</VersionsRepoAutoUpdateRef>
     </RemoteDependencyBuildInfoPath>
-    
     <RemoteDependencyBuildInfoPath Include="ProjectNTfs">
       <BuildInfoPath>$(BaseDotNetBuildInfo)projectn-tfs/$(DependencyBranch)</BuildInfoPath>
       <CurrentRef>$(ProjectNTfsCurrentRef)</CurrentRef>
     </RemoteDependencyBuildInfoPath>
-    
 
     <RemoteDependencyBuildInfo Include="@(RemoteDependencyBuildInfoPath)">
       <RawVersionsBaseUrl>https://raw.githubusercontent.com/dotnet/versions</RawVersionsBaseUrl>
@@ -67,13 +68,11 @@
       <ElementName>ExternalExpectedPrerelease</ElementName>
       <BuildInfoName>External</BuildInfoName>
     </XmlUpdateStep>
-    
     <XmlUpdateStep Include="ProjectNTfs">
       <Path>$(MSBuildThisFileFullPath)</Path>
       <ElementName>ProjectNTfsExpectedPrerelease</ElementName>
       <BuildInfoName>ProjectNTfs</BuildInfoName>
     </XmlUpdateStep>
-    
   </ItemGroup>
 
   <!-- Set up dependencies on packages that aren't found in a BuildInfo. -->
