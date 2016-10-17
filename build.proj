@@ -31,6 +31,7 @@
   <Import Project="$(ToolsDir)CodeCoverage.targets" Condition="Exists('$(ToolsDir)CodeCoverage.targets')" />
   <Import Project="$(ToolsDir)PerfTesting.targets" Condition="Exists('$(ToolsDir)PerfTesting.targets') and '$(Performance)' == 'true'"/>
   <Import Project="$(ToolsDir)VersionTools.targets" Condition="Exists('$(ToolsDir)VersionTools.targets')" />
+  <Import Project="$(ToolsDir)Compose.targets" Condition="Exists('$(ToolsDir)Compose.targets')" />
 
   <ItemGroup>
     <Project Include="src\dirs.proj">
@@ -82,7 +83,7 @@
     <ProjectJsonFiles Condition="'$(BuildTestsAgainstPackages)' == 'true'" Include="$(GeneratedProjectJsonDir)/**/project.json" />
   </ItemGroup>
   
-  <Target Name="BatchRestorePackages" DependsOnTargets="VerifyDependencies">
+  <Target Name="BatchRestorePackages" DependsOnTargets="Verify">
     <MakeDir Directories="$(PackagesDir)" Condition="!Exists('$(PackagesDir)')" /> 
 
     <Message Importance="High" Text="[$([System.DateTime]::Now.ToString('HH:mm:ss.ff'))] Restoring all packages..." />

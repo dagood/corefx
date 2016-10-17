@@ -94,6 +94,10 @@
     <DnuSourceList Include="https:%2F%2Fwww.nuget.org/api/v2/" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <ConsumesJsonPath>$(ProjectDir)consumes.json</ConsumesJsonPath>
+  </PropertyGroup>
+
   <!-- This is the directory where we dynamically generate project.json's for our test build package dependencies -->
   <PropertyGroup Condition="'$(BuildTestsAgainstPackages)' == 'true'">
     <BuildTestsAgainstPackagesIdentityRegex>$(CoreFxVersionsIdentityRegex)</BuildTestsAgainstPackagesIdentityRegex>
