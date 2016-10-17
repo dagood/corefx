@@ -29,28 +29,29 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <RemoteDependencyBuildInfo Include="CoreFx">
+    <RemoteDependencyBuildInfoPath Include="CoreFx">
       <BuildInfoPath>$(BaseDotNetBuildInfo)corefx/$(DependencyBranch)</BuildInfoPath>
       <CurrentRef>$(CoreFxCurrentRef)</CurrentRef>
-    </RemoteDependencyBuildInfo>
-    <RemoteDependencyBuildInfo Include="CoreClr">
+      <VersionsRepoAutoUpdateRef>master</VersionsRepoAutoUpdateRef>
+    </RemoteDependencyBuildInfoPath>
+    <RemoteDependencyBuildInfoPath Include="CoreClr">
       <BuildInfoPath>$(BaseDotNetBuildInfo)coreclr/$(DependencyBranch)</BuildInfoPath>
       <CurrentRef>$(CoreClrCurrentRef)</CurrentRef>
-    </RemoteDependencyBuildInfo>
-    <RemoteDependencyBuildInfo Include="External">
+      <VersionsRepoAutoUpdateRef>master</VersionsRepoAutoUpdateRef>
+    </RemoteDependencyBuildInfoPath>
+    <RemoteDependencyBuildInfoPath Include="External">
       <BuildInfoPath>$(BaseDotNetBuildInfo)projectk-tfs/$(DependencyBranch)</BuildInfoPath>
       <CurrentRef>$(ExternalCurrentRef)</CurrentRef>
-    </RemoteDependencyBuildInfo>
-    <!--
-    <RemoteDependencyBuildInfo Include="ProjectNTfs">
+      <VersionsRepoAutoUpdateRef>master</VersionsRepoAutoUpdateRef>
+    </RemoteDependencyBuildInfoPath>
+    <RemoteDependencyBuildInfoPath Include="ProjectNTfs">
       <BuildInfoPath>$(BaseDotNetBuildInfo)projectn-tfs/$(DependencyBranch)</BuildInfoPath>
       <CurrentRef>$(ProjectNTfsCurrentRef)</CurrentRef>
-    </RemoteDependencyBuildInfo>
-    -->
+    </RemoteDependencyBuildInfoPath>
 
-    <DependencyBuildInfo Include="@(RemoteDependencyBuildInfo)">
+    <RemoteDependencyBuildInfo Include="@(RemoteDependencyBuildInfoPath)">
       <RawVersionsBaseUrl>https://raw.githubusercontent.com/dotnet/versions</RawVersionsBaseUrl>
-    </DependencyBuildInfo>
+    </RemoteDependencyBuildInfo>
 
     <XmlUpdateStep Include="CoreFx">
       <Path>$(MSBuildThisFileFullPath)</Path>
@@ -67,57 +68,10 @@
       <ElementName>ExternalExpectedPrerelease</ElementName>
       <BuildInfoName>External</BuildInfoName>
     </XmlUpdateStep>
-    <!--
     <XmlUpdateStep Include="ProjectNTfs">
       <Path>$(MSBuildThisFileFullPath)</Path>
       <ElementName>ProjectNTfsExpectedPrerelease</ElementName>
       <BuildInfoName>ProjectNTfs</BuildInfoName>
     </XmlUpdateStep>
-    -->
-  </ItemGroup>
-
-  <!-- Set up dependencies on packages that aren't found in a BuildInfo. -->
-  <ItemGroup>
-    <TargetingPackDependency Include="Microsoft.TargetingPack.NETFramework.v4.5" />
-    <TargetingPackDependency Include="Microsoft.TargetingPack.NETFramework.v4.5.1" />
-    <TargetingPackDependency Include="Microsoft.TargetingPack.NETFramework.v4.5.2" />
-    <TargetingPackDependency Include="Microsoft.TargetingPack.NETFramework.v4.6" />
-    <TargetingPackDependency Include="Microsoft.TargetingPack.NETFramework.v4.6.1" />
-    <TargetingPackDependency Include="Microsoft.TargetingPack.NETFramework.v4.6.2" />
-    <TargetingPackDependency Include="Microsoft.TargetingPack.Private.WinRT" />
-    <StaticDependency Include="@(TargetingPackDependency)">
-      <Version>1.0.1</Version>
-    </StaticDependency>
-
-    <XUnitDependency Include="xunit"/>
-    <XUnitDependency Include="xunit.runner.utility"/>
-    <XUnitDependency Include="xunit.runner.console"/>
-    <StaticDependency Include="@(XUnitDependency)">
-      <Version>2.1.0</Version>
-    </StaticDependency>
-
-    <StaticDependency Include="Microsoft.xunit.netcore.extensions;Microsoft.DotNet.BuildTools.TestSuite">
-      <Version>1.0.0-prerelease-00830-02</Version>
-    </StaticDependency>
-
-    <PerformancePackDependency Include="Microsoft.DotNet.xunit.performance" />
-    <PerformancePackDependency Include="Microsoft.DotNet.xunit.performance.analysis" />
-    <PerformancePackDependency Include="Microsoft.DotNet.xunit.performance.analysis.cli" />
-    <PerformancePackDependency Include="Microsoft.DotNet.xunit.performance.runner.cli" />
-    <PerformancePackDependency Include="Microsoft.DotNet.xunit.performance.runner.Windows" />
-    <StaticDependency Include="@(PerformancePackDependency)">
-      <Version>$(XunitPerfAnalysisPackageVersion)</Version>
-    </StaticDependency>
-
-    <DependencyBuildInfo Include="@(StaticDependency)">
-      <PackageId>%(Identity)</PackageId>
-      <UpdateStableVersions>true</UpdateStableVersions>
-    </DependencyBuildInfo>
-
-    <DependencyBuildInfo Include="uwpRunnerVersion">
-      <PackageId>microsoft.xunit.runner.uwp</PackageId>
-      <Version>$(AppXRunnerVersion)</Version>
-    </DependencyBuildInfo>
-
   </ItemGroup>
 </Project>

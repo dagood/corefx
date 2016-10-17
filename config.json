@@ -233,7 +233,25 @@
       "valueType": "target",
       "values": [],
       "defaultValue": ""
-    }    
+    },
+    "Consumes": {
+      "description": "MsBuild target that displays all of the artifacts this repo consumes.",
+      "valueType": "target",
+      "values": [],
+      "defaultValue": ""
+    },
+    "Change": {
+      "description": "MsBuild target that changes dependency versions. Capture the consumes stdout, modify versions as desired, then pass it to this command as stdin.",
+      "valueType": "target",
+      "values": [],
+      "defaultValue": ""
+    },
+    "Verify": {
+      "description": "MsBuild target that verifies repository consistency with Consumes output.",
+      "valueType": "target",
+      "values": [],
+      "defaultValue": ""
+    }
   },
   "commands": {
     "build-managed": {
@@ -410,6 +428,34 @@
         "settings": {
           "Project": "src/packages.builds",
           "ProducesTarget":"default"
+        }
+      }
+    },
+    "consumes": {
+      "alias": {},
+      "defaultValues": {
+        "toolName": "msbuild",
+        "settings": {
+          "RunQuiet": true,
+          "Consumes": "default"
+        }
+      }
+    },
+    "change": {
+      "alias": {},
+      "defaultValues": {
+        "toolName": "msbuild",
+        "settings": {
+          "Change": "default"
+        }
+      }
+    },
+    "verify": {
+      "alias": {},
+      "defaultValues": {
+        "toolName": "msbuild",
+        "settings": {
+          "Verify": "default"
         }
       }
     },
