@@ -9,9 +9,9 @@
 
   <!-- Auto-upgraded properties for each build info dependency. -->
   <PropertyGroup>
-    <CoreFxExpectedPrerelease>beta-24611-02</CoreFxExpectedPrerelease>
-    <CoreClrExpectedPrerelease>beta-24611-01</CoreClrExpectedPrerelease>
-    <ExternalExpectedPrerelease>beta-24523-00</ExternalExpectedPrerelease>
+    <CoreFxExpectedPrerelease>beta-24619-02</CoreFxExpectedPrerelease>
+    <CoreClrExpectedPrerelease>beta-24619-03</CoreClrExpectedPrerelease>
+    <ExternalExpectedPrerelease>beta-24618-00</ExternalExpectedPrerelease>
     <ProjectNTfsExpectedPrerelease>beta-24604-01</ProjectNTfsExpectedPrerelease>
   </PropertyGroup>
 
