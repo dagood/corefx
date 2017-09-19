@@ -25,22 +25,22 @@
 
   <ItemGroup Condition="'$(TargetGroup)'!='uapaot'">
     <PackageReference Include="Microsoft.NETCore.Platforms">
-      <Version>2.0.0-$(CoreFxExpectedPrerelease)</Version>
+      <Version>$(Microsoft_NETCore_Platforms_PackageVersion)</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.Runtime.CoreCLR">
-      <Version>2.0.0-$(CoreClrExpectedPrerelease)</Version>
+      <Version>$(Microsoft_NETCore_Runtime_CoreCLR_PackageVersion)</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.TestHost">
-      <Version>2.0.0-$(CoreClrExpectedPrerelease)</Version>
+      <Version>$(Microsoft_NETCore_Runtime_CoreCLR_PackageVersion)</Version>
     </PackageReference>
     <PackageReference Include="runtime.native.System.Data.SqlClient.sni">
-      <Version>4.4.0-$(CoreFxExpectedPrerelease)</Version>
+      <Version>$(runtime_native_System_Data_SqlClient_sni_PackageVersion)</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.DotNetHost">
-      <Version>2.0.0-preview2-25310-02</Version>
+      <Version>$(Microsoft_NETCore_DotNetHost_PackageVersion)</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.DotNetHostPolicy">
-      <Version>2.0.0-preview2-25310-02</Version>
+      <Version>$(Microsoft_NETCore_DotNetHost_PackageVersion)</Version>
     </PackageReference>
   </ItemGroup>
 

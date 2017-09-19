@@ -37,6 +37,9 @@
     <CodeAnalysisRuleset>$(MSBuildThisFileDirectory)CodeAnalysis.ruleset</CodeAnalysisRuleset>
   </PropertyGroup>
 
+  <!-- Implement Repo API. Ideally moved to BuildTools, brought in by Build.Common.props. -->
+  <Import Project="$(ProjectDir)SourceBuild.RepoApi.props" />
+
   <!-- Import Build tools common props file where repo-independent properties are found -->
   <Import Project="$(ToolsDir)Build.Common.props" Condition="Exists('$(ToolsDir)Build.Common.props')" />
 
@@ -54,6 +57,11 @@
 
   <!-- Provides package dependency version properties and verification/auto-upgrade configuration -->
   <Import Project="$(MSBuildThisFileDirectory)dependencies.props" />
+
+  <!-- Implement Repo API. -->
+  <PropertyGroup>
+    <OverridePackageSource Condition="'$(DotNet_OverridePackageSource)' != ''">$(DotNet_OverridePackageSource)</OverridePackageSource>
+  </PropertyGroup>
 
   <!-- list of nuget package sources passed to nuget restore -->
   <ItemGroup Condition="'$(ExcludeInternetFeeds)' != 'true'">
