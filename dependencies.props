@@ -32,6 +32,13 @@
     <MicrosoftNETCoreAppPackageVersion>2.0.0-preview2-25317-03</MicrosoftNETCoreAppPackageVersion>
     <!-- Use the SNI runtime package -->
     <SniPackageVersion>4.4.0</SniPackageVersion>
+
+    <MicrosoftNETCorePlatformsPackageVersion>2.0.0-$(CoreFxExpectedPrerelease)</MicrosoftNETCorePlatformsPackageVersion>
+    <RuntimeNativeSystemDataSqlClientSniPackageVersion>4.4.0-$(CoreFxExpectedPrerelease)</RuntimeNativeSystemDataSqlClientSniPackageVersion>
+
+    <MicrosoftNETCoreDotNetHostPackageVersion>2.0.0-preview2-25310-02</MicrosoftNETCoreDotNetHostPackageVersion>
+
+    <MicrosoftNETCoreRuntimeCoreCLRPackageVersion>2.0.0-$(CoreClrExpectedPrerelease)</MicrosoftNETCoreRuntimeCoreCLRPackageVersion>
   </PropertyGroup>
 
   <!-- Full package version strings that are used in other parts of the build. -->
@@ -189,4 +196,17 @@
     <!-- project.json files to update -->
     <ProjectJsonFiles Include="$(MSBuildThisFileDirectory)external\**\optional.json" />
   </ItemGroup>
+
+  <!-- Override isolated build dependency versions with product build's. -->
+  <Import Project="$(DotNetPackageVersionPropsPath)"
+          Condition="'$(DotNetPackageVersionPropsPath)' != ''" />
+
+  <!--
+    Pick out package versions to use that were defined concretely in the build output props. This is
+    a way to start using the contract without find-replacing all properties in the project, although
+    we will do the replacement in Core repos once larger changes are more reasonable.
+  -->
+  <PropertyGroup Condition="'$(DotNetPackageVersionPropsPath)' != ''">
+    <NETStandardPackageVersion>$(NETStandardLibraryPackageVersion)</NETStandardPackageVersion>
+  </PropertyGroup>
 </Project>
