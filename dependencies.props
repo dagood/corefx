@@ -9,7 +9,7 @@
        These ref versions are pulled from https://github.com/dotnet/versions.
   -->
   <PropertyGroup>
-    <CoreFxCurrentRef>77caef8d80f8cac1102717be6c8cce346d4de5dd</CoreFxCurrentRef>
+    <CoreFxCurrentRef>a68032514f620860d202490fe5ab9b014cd74675</CoreFxCurrentRef>
     <CoreClrCurrentRef>77caef8d80f8cac1102717be6c8cce346d4de5dd</CoreClrCurrentRef>
     <CoreSetupCurrentRef>aac2e06e201666201a5cfda06a296921a1c7f69d</CoreSetupCurrentRef>
     <ExternalCurrentRef>9be29f5804c4798d8b51bd3fed99ea076041aeb2</ExternalCurrentRef>
