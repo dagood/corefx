@@ -9,14 +9,14 @@
        These ref versions are pulled from https://github.com/dotnet/versions.
   -->
   <PropertyGroup>
-    <CoreFxCurrentRef>f0a6a57ab0cf58bbbd859a1c6e8caadaa3264a1b</CoreFxCurrentRef>
+    <CoreFxCurrentRef>3a5b9d25514fe788eeeb6ecdca6c5b187703d5f3</CoreFxCurrentRef>
     <CoreClrCurrentRef>9eb940efacc7a1f85cb255bb1b8d88bf027f71d3</CoreClrCurrentRef>
     <CoreSetupCurrentRef>41cec0941b3e81e30e69648c44110acc2a069bba</CoreSetupCurrentRef>
     <ExternalCurrentRef>96dc7805f5df4a70a55783964ce69dcd91bfca80</ExternalCurrentRef>
     <ProjectNTfsCurrentRef>9eb940efacc7a1f85cb255bb1b8d88bf027f71d3</ProjectNTfsCurrentRef>
     <ProjectNTfsTestILCCurrentRef>9eb940efacc7a1f85cb255bb1b8d88bf027f71d3</ProjectNTfsTestILCCurrentRef>
     <SniCurrentRef>8bd1ec5fac9f0eec34ff6b34b1d878b4359e02dd</SniCurrentRef>
-    <StandardCurrentRef>f0a6a57ab0cf58bbbd859a1c6e8caadaa3264a1b</StandardCurrentRef>
+    <StandardCurrentRef>3814b0d53f4139b68c2fac85c28030fe8fa50a9d</StandardCurrentRef>
     <BuildToolsCurrentRef>9eb940efacc7a1f85cb255bb1b8d88bf027f71d3</BuildToolsCurrentRef>
   </PropertyGroup>
 
