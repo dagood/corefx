@@ -22,14 +22,14 @@
 
   <!-- Auto-upgraded properties for each build info dependency. -->
   <PropertyGroup>
-    <PlatformPackageVersion>2.1.0-preview1-25820-02</PlatformPackageVersion>
-    <CoreFxExpectedPrerelease>preview1-25820-02</CoreFxExpectedPrerelease>
+    <PlatformPackageVersion>2.1.0-preview1-25819-01</PlatformPackageVersion>
+    <CoreFxExpectedPrerelease>preview1-25819-01</CoreFxExpectedPrerelease>
     <CoreClrPackageVersion>2.1.0-preview1-25820-01</CoreClrPackageVersion>
     <ExternalExpectedPrerelease>beta-25627-00</ExternalExpectedPrerelease>
     <ProjectNTfsExpectedPrerelease>beta-25820-00</ProjectNTfsExpectedPrerelease>
     <ProjectNTfsTestILCExpectedPrerelease>beta-25820-00</ProjectNTfsTestILCExpectedPrerelease>
     <ProjectNTfsTestILCPackageVersion>1.0.0-beta-25820-00</ProjectNTfsTestILCPackageVersion>
-    <NETStandardPackageVersion>2.1.0-preview1-25820-01</NETStandardPackageVersion>
+    <NETStandardPackageVersion>2.1.0-preview1-25818-01</NETStandardPackageVersion>
     <NETStandardPackageId>NETStandard.Library</NETStandardPackageId>
     <MicrosoftNETCoreAppPackageVersion>2.1.0-preview1-25818-02</MicrosoftNETCoreAppPackageVersion>
     <!-- Use the SNI runtime package -->
