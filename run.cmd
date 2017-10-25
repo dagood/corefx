@@ -37,11 +37,22 @@ call "%_VSCOMNTOOLS%\VsDevCmd.bat"
 :: misleading value (such as 'MCD' in HP PCs) may lead to build breakage (issue: #69).
 set Platform=
 
+set _toolRuntime=%~dp0Tools
+
+:: The path that init-tools should download a PackageVersionProps file to, if it downloads one.
+set DotNetPackageVersionPropsDownloadPath=%_toolRuntime%\DownloadedPackageVersionProps\PackageVersions.props
+
 :: Restore the Tools directory
 call %~dp0init-tools.cmd
+
+:: If there is a downloaded package version props, use it.
+if exist "%DotNetPackageVersionPropsDownloadPath%" (
+  set DotNetPackageVersionPropsPath=%DotNetPackageVersionPropsDownloadPath%
+  echo Passing downloaded package version props to DotNetPackageVersionPropsPath: %DotNetPackageVersionPropsDownloadPath%
+)
+
 if NOT [%ERRORLEVEL%]==[0] exit /b 1
 
-set _toolRuntime=%~dp0Tools
 set _dotnet=%_toolRuntime%\dotnetcli\dotnet.exe
 set _json=%~dp0config.json
 
