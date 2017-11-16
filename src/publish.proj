@@ -5,6 +5,8 @@
   <Import Project="$(ToolsDir)versioning.targets" />
   <Import Project="$(PackagesDir)/$(FeedTasksPackage.ToLower())/$(FeedTasksPackageVersion)/build/$(FeedTasksPackage).targets" />
 
+  <UsingTask TaskName="WriteBuildOutputProps" AssemblyFile="$(BuildToolsTaskDir)Microsoft.DotNet.Build.Tasks.dll"/>
+
   <PropertyGroup>
     <PublishPattern Condition="'$(PublishPattern)' == ''">$(PackageOutputRoot)\**\*.nupkg</PublishPattern>
   </PropertyGroup>
@@ -52,5 +54,19 @@
                     AccountKey="$(AccountKey)"
                     ItemsToPush="@(ItemsToPush)"
                     Overwrite="$(PublishOverwrite)" />
+  </Target>
+
+  <Target Name="GetPackagesMaybe">
+    <GetBlobFeedPackageList
+      ExpectedFeedUrl="$(ExpectedFeedUrl)"
+      AccountKey="$(AccountKey)">
+      <Output TaskParameter="PackageInfos" ItemName="PackageInfos" />
+    </GetBlobFeedPackageList>
+
+    <WriteBuildOutputProps
+      NuGetPackageInfos="@(PackageInfos)"
+      OutputPath="$(BaseIntermediateOutputPath)PackageVersionProps.props"
+      OnlyUpdatePrereleaseVersions="true"
+      />
   </Target>
 </Project>
