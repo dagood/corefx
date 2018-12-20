@@ -68,4 +68,33 @@
                       '%(Dependency.Identity)' != '_._'" />
   </Target>  
 
+  <Target Name="FixInteropWindowsKernel32PathCasing"
+          BeforeTargets="BeforeCompile"
+          Condition="'@(Compile)' != ''">
+    <ItemGroup>
+      <_PathToFix
+        Include="Common/src/CoreLib/Interop/Windows/kernel32"
+        FixPath="Common/src/CoreLib/Interop/Windows/Kernel32" />
+      <_PathToFix
+        Include="Common/src/CoreLib/Interop/Windows/advapi32"
+        FixPath="Common/src/CoreLib/Interop/Windows/Advapi32" />
+      <_PathToFix
+        Include="Common/src/Interop/Windows/Kernel32"
+        FixPath="Common/src/Interop/Windows/kernel32" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <_PotentialBadItem
+        Include="@(Compile)"
+        Path="%(_PathToFix.Identity)"
+        Fix="%(_PathToFix.FixPath)" />
+      <_BadInteropItem
+        Include="@(_PotentialBadItem)"
+        Condition="$([System.String]::new('%(Identity)').Contains('%(Path)'))"
+        Fixed="$([System.String]::new('%(Identity)').Replace('%(Path)', '%(Fix)'))" />
+      <Compile Remove="@(_BadInteropItem)" />
+      <Compile Include="@(_BadInteropItem -> '%(Fixed)')" />
+    </ItemGroup>
+  </Target>
+
 </Project>
