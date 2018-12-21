@@ -56,6 +56,15 @@
     <Exec
         Condition="!Exists('$(BuildToolsSemaphore)')"
         Command="$(InitToolsCmdLine) &gt; $(RepoRoot)init-tools.log" />
+    
+    <!--
+      When building uap on linux, this file takes over and causes a confusing reference error.
+      For now, just delete it. I don't know what it's for, and I haven't trakced down why it doesn't
+      exist on Windows but does on Linux.
+    -->
+    <Delete
+      Files="$(ToolsDir)/System.Text.Encoding.CodePages.dll"
+      Condition="Exists('$(ToolsDir)/System.Text.Encoding.CodePages.dll')" />
 
     <Touch Files="$(BuildToolsSemaphore)" AlwaysCreate="true" />
     <OnError ExecuteTargets="DumpInitToolsLog" />
