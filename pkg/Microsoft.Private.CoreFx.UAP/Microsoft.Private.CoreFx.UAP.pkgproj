@@ -66,6 +66,12 @@
             System.Reflection.Context;
         </Value>
     </ValidatePackageSuppression>
+    <!-- Permit missing Inbox but I don't know why. -->
+    <ValidatePackageSuppression Include="PermitMissingInbox">
+      <Value>
+        System.Numerics.Vectors.WindowsRuntime
+      </Value>
+    </ValidatePackageSuppression>
   </ItemGroup>
   <Import Project="$([MSBuild]::GetDirectoryNameOfFileAbove($(MSBuildThisFileDirectory), Directory.Build.targets))\Directory.Build.targets" />
 </Project>
