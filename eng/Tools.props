@@ -66,6 +66,14 @@
       Files="$(ToolsDir)/System.Text.Encoding.CodePages.dll"
       Condition="Exists('$(ToolsDir)/System.Text.Encoding.CodePages.dll')" />
 
+    <!--
+      The official version of this package doesn't support case-sensitive filesystems. Stick in
+      a workaround that creates IdToLower and passes that in.
+    -->
+    <Copy
+      SourceFiles="$(RepoRoot)patches/Packaging.targets"
+      DestinationFolder="$(PackagesDir)microsoft.dotnet.build.tasks.packaging\1.0.0-beta.18565.8\build" />
+
     <Touch Files="$(BuildToolsSemaphore)" AlwaysCreate="true" />
     <OnError ExecuteTargets="DumpInitToolsLog" />
   </Target>
