@@ -6,6 +6,12 @@
       command, and interfere with this depproj in -allconfigurations mode.
     -->
     <RuntimeIdentifier>$(PackageRIDConfigurationDefault)</RuntimeIdentifier>
+    <!--
+      Allow the caller to change the RID to PackageRID for a specific configuration. For example,
+      source-build only produces linux CoreCLR packages, so it needs to replace the netcoreapp-Unix
+      configuration but not the Windows_NT one.
+    -->
+    <RuntimeIdentifier Condition="'$(PackageRIDTargetGroupReplacement)' == '$(TargetGroup)'">$(PackageRID)</RuntimeIdentifier>
     <NoWarn>$(NoWarn);NU1603;NU1605</NoWarn>
   </PropertyGroup>
   <PropertyGroup Condition="'$(TargetsAOT)'=='true'">
