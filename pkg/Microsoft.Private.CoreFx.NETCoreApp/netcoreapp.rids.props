@@ -37,7 +37,4 @@
       <Platform>wasm</Platform>
     </OfficialBuildRID>
   </ItemGroup>
-  <PropertyGroup>
-    <BuildsOnUnsupportedRIDs>true</BuildsOnUnsupportedRIDs>
-  </PropertyGroup>
 </Project>
