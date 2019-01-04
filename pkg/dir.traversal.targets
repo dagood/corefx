@@ -20,6 +20,14 @@
 
   <!-- When @(BuildRID) is set, filter the set of projects down to only those applicable to $(PackageRID) -->
   <Target Name="FilterProjectsPackageRID" Condition="'@(BuildRID)' != ''">
+    <!--
+      Only build runtime packages for a certain configuration, if specified. Used by the
+      source-build allconfigurations build to avoid packing runtime packages we didn't build for.
+    -->
+    <PropertyGroup Condition="'$(PackageConfigurationFilter)' == '' OR '$(PackageConfigurationFilter)' == '$(Configuration)'">
+      <SkipBuildRuntimePackage>true</SkipBuildRuntimePackage>
+    </PropertyGroup>
+
     <ItemGroup>
       <!-- Build identity package, when SkipBuildIdentityPackage is not set -->
       <_projectsToBuild Include="@(Project)" Condition="'%(Project.PackageTargetRuntime)' == '' AND '$(SkipBuildIdentityPackage)' != 'true'" />
